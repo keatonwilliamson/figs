@@ -20,7 +20,7 @@ Example.sprites = function() {
         element: document.body,
         engine: engine,
         options: {
-            width: 500,
+            width: 700,
             height: 600,
             background: '#0f0f13',
             showAngleIndicator: false,
@@ -51,28 +51,70 @@ Example.sprites = function() {
     ]);
 
     var stack = Composites.stack(20, 20, 10, 4, 0, 0, function(x, y) {
-        if (Common.random() > 0.35) {
+        if ((Math.floor(Common.random() * 6)) === 0) {
             return Bodies.rectangle(x, y, 64, 64, {
                 render: {
                     strokeStyle: '#ffffff',
                     sprite: {
-                        texture: './img/fig.png'
-                    }
-                }
-            });
-        } else {
-            return Bodies.circle(x, y, 46, {
-                density: 0.0005,
-                frictionAir: 0.06,
-                restitution: 0.3,
-                friction: 0.01,
-                render: {
-                    sprite: {
-                        texture: './img/yin-yang.png'
+                        texture: './img/mms/red.png'
                     }
                 }
             });
         }
+        else if ((Math.floor(Common.random() * 6)) === 1)  {
+            return Bodies.rectangle(x, y, 64, 64, {
+                render: {
+                    strokeStyle: '#ffffff',
+                    sprite: {
+                        texture: './img/mms/green.png'
+                    }
+                }
+            });
+        }
+
+        else if ((Math.floor(Common.random() * 6)) === 2) {
+            return Bodies.rectangle(x, y, 64, 64, {
+                render: {
+                    strokeStyle: '#ffffff',
+                    sprite: {
+                        texture: './img/mms/orange.png'
+                    }
+                }
+            });
+        }
+        else if ((Math.floor(Common.random() * 6)) === 3) {
+            return Bodies.rectangle(x, y, 64, 64, {
+                render: {
+                    strokeStyle: '#ffffff',
+                    sprite: {
+                        texture: './img/mms/gold.png'
+                    }
+                }
+            });
+        }
+        else if ((Math.floor(Common.random() * 6)) === 4) {
+            return Bodies.rectangle(x, y, 64, 64, {
+                render: {
+                    strokeStyle: '#ffffff',
+                    sprite: {
+                        texture: './img/mms/blue.png'
+                    }
+                }
+            });
+        }
+
+        else if ((Math.floor(Common.random() * 6)) === 5) {
+            return Bodies.rectangle(x, y, 64, 64, {
+                render: {
+                    strokeStyle: '#ffffff',
+                    sprite: {
+                        texture: './img/mms/brown.png'
+                    }
+                }
+            });
+        }
+        
+
     });
 
     World.add(world, stack);
