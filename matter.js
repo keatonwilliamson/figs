@@ -1,6 +1,6 @@
 var Example = Example || {};
 
-Example.sprites = function() {
+Example.sprites = function () {
     var Engine = Matter.Engine,
         Render = Matter.Render,
         Runner = Matter.Runner,
@@ -36,7 +36,7 @@ Example.sprites = function() {
 
     // add bodies
     var offset = 10,
-        options = { 
+        options = {
             isStatic: true
         };
 
@@ -166,7 +166,7 @@ Example.sprites = function() {
     //             }
     //         });
     //     }
-        
+
 
     // });
 
@@ -186,13 +186,13 @@ Example.sprites = function() {
 
     World.add(world, mouseConstraint);
 
-  
+
     // var addCircle = function () {
     //     return Bodies.circle(Math.random()*400 + 30, 30, 30);
     //    };
 
-       var addMM = function (color) {
-        return Bodies.circle(Math.random()*700, 30, 37, {
+    var addMM = function (color) {
+        return Bodies.circle(Math.random() * 700, 30, 37, {
             render: {
                 strokeStyle: '#ffffff',
                 sprite: {
@@ -202,39 +202,43 @@ Example.sprites = function() {
                 }
             }
         })
-       };
+    };
 
-       document.getElementById("btn-generate-mm").addEventListener("click", e => {
+    document.getElementById("btn-generate-mm").addEventListener("click", e => {
         console.log("click")
-        let randomNumber = Math.floor(Common.random(0,6))
-       let randomColor = "red"
-       if (randomNumber === 0) {
+        let randomNumber = Math.floor(Common.random(0, 7))
+        let randomColor = "red"
+        if (randomNumber === 0) {
             console.log("its 0")
             randomColor = "red"
-       }
-       else if (randomNumber === 1) {
+        }
+        else if (randomNumber === 1) {
             console.log("its 1")
             randomColor = "orange"
-       }
-       else if (randomNumber === 2) {
+        }
+        else if (randomNumber === 2) {
             console.log("its 2")
             randomColor = "gold"
-       }
-       else if (randomNumber === 3) {
+        }
+        else if (randomNumber === 3) {
             console.log("its 3")
             randomColor = "blue"
-       }
-       else if (randomNumber === 4) {
-             console.log("its 4")
-             randomColor = "brown"
-       }
-       else if (randomNumber === 5) {
+        }
+        else if (randomNumber === 4) {
+            console.log("its 4")
+            randomColor = "brown"
+        }
+        else if (randomNumber === 5) {
             console.log("its 5")
             randomColor = "green"
-       }
+        }
+        else if (randomNumber === 6) {
+            console.log("its 6")
+            randomColor = "marlow"
+        }
         // Composites.add(stack);
         World.add(engine.world, addMM(randomColor));
-        
+
     })
 
 
@@ -253,7 +257,7 @@ Example.sprites = function() {
         runner: runner,
         render: render,
         canvas: render.canvas,
-        stop: function() {
+        stop: function () {
             Matter.Render.stop(render);
             Matter.Runner.stop(runner);
         }
