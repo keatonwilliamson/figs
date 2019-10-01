@@ -50,74 +50,127 @@ Example.sprites = function() {
         Bodies.rectangle(-offset, 300, 50.5, 600.5 + 2 * offset, options)
     ]);
 
-    var stack = Composites.stack(20, 20, 10, 4, 0, 0, function(x, y) {
-        if ((Math.floor(Common.random() * 6)) === 0) {
-            return Bodies.rectangle(x, y, 64, 64, {
-                render: {
-                    strokeStyle: '#ffffff',
-                    sprite: {
-                        texture: './img/mms/red.png'
-                    }
-                }
-            });
-        }
-        else if ((Math.floor(Common.random() * 6)) === 1)  {
-            return Bodies.rectangle(x, y, 64, 64, {
-                render: {
-                    strokeStyle: '#ffffff',
-                    sprite: {
-                        texture: './img/mms/green.png'
-                    }
-                }
-            });
-        }
+    // const singleMM = (x, y) => {
+    //    let randomNumber = Math.floor(Common.random(0,6))
+    //    let randomColor = ""
+    //    if (randomNumber === 0) {
+    //         console.log("its 0")
+    //         randomColor = "red"
+    //    }
+    //    else if (randomNumber === 1) {
+    //         console.log("its 1")
+    //         randomColor = "orange"
+    //    }
+    //    else if (randomNumber === 2) {
+    //         console.log("its 2")
+    //         randomColor = "gold"
+    //    }
+    //    else if (randomNumber === 3) {
+    //         console.log("its 3")
+    //         randomColor = "blue"
+    //    }
+    //    else if (randomNumber === 4) {
+    //          console.log("its 4")
+    //          randomColor = "brown"
+    //    }
+    //    else if (randomNumber === 5) {
+    //         console.log("its 5")
+    //         randomColor = "green"
+    //    }
 
-        else if ((Math.floor(Common.random() * 6)) === 2) {
-            return Bodies.rectangle(x, y, 64, 64, {
-                render: {
-                    strokeStyle: '#ffffff',
-                    sprite: {
-                        texture: './img/mms/orange.png'
-                    }
-                }
-            });
-        }
-        else if ((Math.floor(Common.random() * 6)) === 3) {
-            return Bodies.rectangle(x, y, 64, 64, {
-                render: {
-                    strokeStyle: '#ffffff',
-                    sprite: {
-                        texture: './img/mms/gold.png'
-                    }
-                }
-            });
-        }
-        else if ((Math.floor(Common.random() * 6)) === 4) {
-            return Bodies.rectangle(x, y, 64, 64, {
-                render: {
-                    strokeStyle: '#ffffff',
-                    sprite: {
-                        texture: './img/mms/blue.png'
-                    }
-                }
-            });
-        }
+    //    return Bodies.circle(x, y, 37, {
+    //     render: {
+    //         strokeStyle: '#ffffff',
+    //         sprite: {
+    //             texture: `./img/mms/${randomColor}.png`,
+    //             xScale: 0.5,
+    //             yScale: 0.5
+    //         }
+    //     }
+    // })
+    // };
 
-        else if ((Math.floor(Common.random() * 6)) === 5) {
-            return Bodies.rectangle(x, y, 64, 64, {
-                render: {
-                    strokeStyle: '#ffffff',
-                    sprite: {
-                        texture: './img/mms/brown.png'
-                    }
-                }
-            });
-        }
+
+    // var stack = Composites.stack(20, 20, 1, 1, 0, 0, function(x, y) {
+    //     if ((Math.floor(Common.random(0,6))) === 0) {
+    //         return Bodies.circle(x, y, 37, {
+    //             render: {
+    //                 strokeStyle: '#ffffff',
+    //                 sprite: {
+    //                     texture: './img/mms/red.png',
+    //                     xScale: 0.5,
+    //                     yScale: 0.5
+    //                 }
+    //             }
+    //         });
+    //     }
+    //     else if ((Math.floor(Common.random(0,6))) === 1)   {
+    //         return Bodies.circle(x, y, 37, {
+    //             render: {
+    //                 strokeStyle: '#ffffff',
+    //                 sprite: {
+    //                     texture: './img/mms/green.png',
+    //                     xScale: 0.5,
+    //                     yScale: 0.5
+    //                 }
+    //             }
+    //         });
+    //     }
+
+    //     else if ((Math.floor(Common.random(0,6))) === 2) {
+    //         return Bodies.circle(x, y, 37, {
+    //             render: {
+    //                 strokeStyle: '#ffffff',
+    //                 sprite: {
+    //                     texture: './img/mms/orange.png',
+    //                     xScale: 0.5,
+    //                     yScale: 0.5
+    //                 }
+    //             }
+    //         });
+    //     }
+    //     else if ((Math.floor(Common.random(0,6))) === 3) {
+    //         return Bodies.circle(x, y, 37, {
+    //             render: {
+    //                 strokeStyle: '#ffffff',
+    //                 sprite: {
+    //                     texture: './img/mms/gold.png',
+    //                     xScale: 0.5,
+    //                     yScale: 0.5
+    //                 }
+    //             }
+    //         });
+    //     }
+    //     else if ((Math.floor(Common.random(0,6))) === 4) {
+    //         return Bodies.circle(x, y, 37, {
+    //             render: {
+    //                 strokeStyle: '#ffffff',
+    //                 sprite: {
+    //                     texture: './img/mms/blue.png',
+    //                     xScale: 0.5,
+    //                     yScale: 0.5
+    //                 }
+    //             }
+    //         });
+    //     }
+
+    //     else if ((Math.floor(Common.random(0,6))) === 5) {
+    //         return Bodies.circle(x, y, 37, {
+    //             render: {
+    //                 strokeStyle: '#ffffff',
+    //                 sprite: {
+    //                     texture: './img/mms/brown.png',
+    //                     xScale: 0.5,
+    //                     yScale: 0.5
+    //                 }
+    //             }
+    //         });
+    //     }
         
 
-    });
+    // });
 
-    World.add(world, stack);
+    // World.add(world, stack);
 
     // add mouse control
     var mouse = Mouse.create(render.canvas),
@@ -132,6 +185,58 @@ Example.sprites = function() {
         });
 
     World.add(world, mouseConstraint);
+
+  
+    // var addCircle = function () {
+    //     return Bodies.circle(Math.random()*400 + 30, 30, 30);
+    //    };
+
+       var addMM = function (color) {
+        return Bodies.circle(Math.random()*700, 30, 37, {
+            render: {
+                strokeStyle: '#ffffff',
+                sprite: {
+                    texture: `./img/mms/${color}.png`,
+                    xScale: 0.5,
+                    yScale: 0.5
+                }
+            }
+        })
+       };
+
+       document.getElementById("btn-generate-mm").addEventListener("click", e => {
+        console.log("click")
+        let randomNumber = Math.floor(Common.random(0,6))
+       let randomColor = "red"
+       if (randomNumber === 0) {
+            console.log("its 0")
+            randomColor = "red"
+       }
+       else if (randomNumber === 1) {
+            console.log("its 1")
+            randomColor = "orange"
+       }
+       else if (randomNumber === 2) {
+            console.log("its 2")
+            randomColor = "gold"
+       }
+       else if (randomNumber === 3) {
+            console.log("its 3")
+            randomColor = "blue"
+       }
+       else if (randomNumber === 4) {
+             console.log("its 4")
+             randomColor = "brown"
+       }
+       else if (randomNumber === 5) {
+            console.log("its 5")
+            randomColor = "green"
+       }
+        // Composites.add(stack);
+        World.add(engine.world, addMM(randomColor));
+        
+    })
+
 
     // keep the mouse in sync with rendering
     render.mouse = mouse;
