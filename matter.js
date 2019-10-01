@@ -5,6 +5,17 @@ var Example = Example || {};
 Example.sprites = function () {
 
 
+
+var noteD = new Audio('./mp3/music-box-d.mp3');
+var noteE = new Audio('./mp3/music-box-e.mp3');
+var noteF = new Audio('./mp3/music-box-f.mp3');
+var noteG = new Audio('./mp3/music-box-g.mp3');
+var noteA = new Audio('./mp3/music-box-a.mp3');
+
+
+
+
+
     var midi, data;
 // start talking to MIDI controller
 if (navigator.requestMIDIAccess) {
@@ -30,31 +41,83 @@ function onMIDISuccess(midiData) {
 // var dataList = document.querySelector('#midi-data ul')
 
 function gotMIDImessage(messageData) {
+    let pad = 0.9
 //   var newItem = document.createElement('li');
 console.log("data", messageData.data)
 if (messageData.data[0] === 144 && messageData.data[1] === 48) {
-    console.log ("C RED")
     World.add(engine.world, addMM("red"));
+    var noteC = new Audio("mp3/music-box-c.mp3");
+    noteC.volume = (messageData.data[2] * (1/128) * pad);
+    noteC.play();
+
 }
 else if (messageData.data[0] === 144 && messageData.data[1] === 50) {
-    console.log ("C RED")
-    World.add(engine.world, addMM("gold"));
+    World.add(engine.world, addMM("orange"));
+    var noteD = new Audio("mp3/music-box-d.mp3");
+    noteD.volume = (messageData.data[2] * (1/128) * pad);
+    noteD.play();
+
 }
 else if (messageData.data[0] === 144 && messageData.data[1] === 52) {
-    console.log ("C RED")
-    World.add(engine.world, addMM("orange"));
+    World.add(engine.world, addMM("gold"));
+    var noteE = new Audio("mp3/music-box-e.mp3");
+    noteE.volume = (messageData.data[2] * (1/128) * pad);
+    noteE.play();
+
 }
 else if (messageData.data[0] === 144 && messageData.data[1] === 53) {
-    console.log ("C RED")
     World.add(engine.world, addMM("green"));
+    var noteF = new Audio("mp3/music-box-f.mp3");
+    noteF.volume = (messageData.data[2] * (1/128) * pad);
+    noteF.play();
+
 }
 else if (messageData.data[0] === 144 && messageData.data[1] === 55) {
-    console.log ("C RED")
     World.add(engine.world, addMM("blue"));
+    var noteG = new Audio("mp3/music-box-g.mp3");
+    noteG.volume = (messageData.data[2] * (1/128) * pad);
+    noteG.play();
+
 }
 else if (messageData.data[0] === 144 && messageData.data[1] === 57) {
-    console.log ("C RED")
     World.add(engine.world, addMM("brown"));
+    var noteA = new Audio("mp3/music-box-a.mp3");
+    noteA.volume = (messageData.data[2] * (1/128) * pad);
+    noteA.play();
+
+}
+
+// chromatic notes
+
+else if (messageData.data[0] === 144 && messageData.data[1] === 49) {
+    World.add(engine.world, addMM("yin-yang"));
+    var snare = new Audio("mp3/music-box-snare.wav");
+    snare.volume = (messageData.data[2] * (1/128) * pad);
+    snare.play();
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 51) {
+    World.add(engine.world, addMM("doggo"));
+    var bamboo = new Audio("mp3/music-box-bamboo.wav");
+    bamboo.volume = (messageData.data[2] * (1/128) * pad);
+    bamboo.play();
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 54) {
+    World.add(engine.world, addMM("secretary"));
+    var hat = new Audio("mp3/music-box-hat.wav");
+    hat.volume = (messageData.data[2] * (1/128) * pad);
+    hat.play();
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 56) {
+    World.add(engine.world, addMM("fig"));
+    var kick = new Audio("mp3/music-box-kick.wav");
+    kick.volume = (messageData.data[2] * (1/128) * pad);
+    kick.play();
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 58) {
+    World.add(engine.world, addMM("marlow"));
+    var crash = new Audio("mp3/music-box-crash.mp3");
+    crash.volume = (messageData.data[2] * (1/128) * pad);
+    crash.play();
 }
 
 }
