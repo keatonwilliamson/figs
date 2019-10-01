@@ -1,6 +1,76 @@
+
+
 var Example = Example || {};
 
 Example.sprites = function () {
+
+
+    var midi, data;
+// start talking to MIDI controller
+if (navigator.requestMIDIAccess) {
+  navigator.requestMIDIAccess({
+    sysex: false
+  }).then(onMIDISuccess, onMIDIFailure);
+} else {
+  console.warn("No MIDI support in your browser")
+}
+
+// on success
+function onMIDISuccess(midiData) {
+    console.log("midi works")
+  // this is all our MIDI data
+  midi = midiData;
+  var allInputs = midi.inputs.values();
+  // loop over all available inputs and listen for any MIDI input
+  for (var input = allInputs.next(); input && !input.done; input = allInputs.next()) {
+    // when a MIDI value is received call the onMIDIMessage function
+    input.value.onmidimessage = gotMIDImessage;
+  }
+}
+// var dataList = document.querySelector('#midi-data ul')
+
+function gotMIDImessage(messageData) {
+//   var newItem = document.createElement('li');
+console.log("data", messageData.data)
+if (messageData.data[0] === 144 && messageData.data[1] === 48) {
+    console.log ("C RED")
+    World.add(engine.world, addMM("red"));
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 50) {
+    console.log ("C RED")
+    World.add(engine.world, addMM("gold"));
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 52) {
+    console.log ("C RED")
+    World.add(engine.world, addMM("orange"));
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 53) {
+    console.log ("C RED")
+    World.add(engine.world, addMM("green"));
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 55) {
+    console.log ("C RED")
+    World.add(engine.world, addMM("blue"));
+}
+else if (messageData.data[0] === 144 && messageData.data[1] === 57) {
+    console.log ("C RED")
+    World.add(engine.world, addMM("brown"));
+}
+
+}
+
+// on failure
+function onMIDIFailure() {
+  console.warn("Not recognising MIDI controller")
+}
+
+// end midi stuff
+
+// start physics stuff
+
+
+
+
     var Engine = Matter.Engine,
         Render = Matter.Render,
         Runner = Matter.Runner,
