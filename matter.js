@@ -311,6 +311,14 @@ function onMIDIFailure() {
 
     })
 
+    document.getElementById("btn-clear-mm").addEventListener("click", e => {
+        Matter.Composite.allBodies(engine.world).forEach(obj => {
+            if (obj.label === "Circle Body") {
+                World.remove(engine.world, obj);
+            }
+        });
+    })
+
 
     // keep the mouse in sync with rendering
     render.mouse = mouse;
