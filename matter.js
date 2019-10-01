@@ -6,130 +6,131 @@ Example.sprites = function () {
 
 
 
-var noteD = new Audio('./mp3/music-box-d.mp3');
-var noteE = new Audio('./mp3/music-box-e.mp3');
-var noteF = new Audio('./mp3/music-box-f.mp3');
-var noteG = new Audio('./mp3/music-box-g.mp3');
-var noteA = new Audio('./mp3/music-box-a.mp3');
+    var noteD = new Audio('./mp3/music-box-d.mp3');
+    var noteE = new Audio('./mp3/music-box-e.mp3');
+    var noteF = new Audio('./mp3/music-box-f.mp3');
+    var noteG = new Audio('./mp3/music-box-g.mp3');
+    var noteA = new Audio('./mp3/music-box-a.mp3');
 
 
 
 
 
     var midi, data;
-// start talking to MIDI controller
-if (navigator.requestMIDIAccess) {
-  navigator.requestMIDIAccess({
-    sysex: false
-  }).then(onMIDISuccess, onMIDIFailure);
-} else {
-  console.warn("No MIDI support in your browser")
-}
+    // start talking to MIDI controller
+    if (navigator.requestMIDIAccess) {
+        navigator.requestMIDIAccess({
+            sysex: false
+        }).then(onMIDISuccess, onMIDIFailure);
+    } else {
+        console.warn("No MIDI support in your browser")
+    }
 
-// on success
-function onMIDISuccess(midiData) {
-    console.log("midi works")
-  // this is all our MIDI data
-  midi = midiData;
-  var allInputs = midi.inputs.values();
-  // loop over all available inputs and listen for any MIDI input
-  for (var input = allInputs.next(); input && !input.done; input = allInputs.next()) {
-    // when a MIDI value is received call the onMIDIMessage function
-    input.value.onmidimessage = gotMIDImessage;
-  }
-}
-// var dataList = document.querySelector('#midi-data ul')
+    // on success
+    function onMIDISuccess(midiData) {
+        console.log("midi works")
+        // this is all our MIDI data
+        midi = midiData;
+        var allInputs = midi.inputs.values();
+        // loop over all available inputs and listen for any MIDI input
+        for (var input = allInputs.next(); input && !input.done; input = allInputs.next()) {
+            // when a MIDI value is received call the onMIDIMessage function
+            input.value.onmidimessage = gotMIDImessage;
+        }
+    }
+    // var dataList = document.querySelector('#midi-data ul')
 
-function gotMIDImessage(messageData) {
-    let pad = 0.9
-//   var newItem = document.createElement('li');
-console.log("data", messageData.data)
-if (messageData.data[0] === 144 && messageData.data[1] === 48) {
-    World.add(engine.world, addMM("red"));
-    var noteC = new Audio("mp3/music-box-c.mp3");
-    noteC.volume = (messageData.data[2] * (1/128) * pad);
-    noteC.play();
+    function gotMIDImessage(messageData) {
+        let pad = 0.9
+        //   var newItem = document.createElement('li');
+        console.log("data", messageData.data)
+        if (messageData.data[0] === 144 && messageData.data[1] === 48) {
+            World.add(engine.world, addMM("red"));
+            var noteC = new Audio("mp3/music-box-c.mp3");
+            noteC.volume = (messageData.data[2] * (1 / 128) * pad);
+            noteC.play();
+            console.log("playc")
 
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 50) {
-    World.add(engine.world, addMM("orange"));
-    var noteD = new Audio("mp3/music-box-d.mp3");
-    noteD.volume = (messageData.data[2] * (1/128) * pad);
-    noteD.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 50) {
+            World.add(engine.world, addMM("orange"));
+            var noteD = new Audio("mp3/music-box-d.mp3");
+            noteD.volume = (messageData.data[2] * (1 / 128) * pad);
+            noteD.play();
 
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 52) {
-    World.add(engine.world, addMM("gold"));
-    var noteE = new Audio("mp3/music-box-e.mp3");
-    noteE.volume = (messageData.data[2] * (1/128) * pad);
-    noteE.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 52) {
+            World.add(engine.world, addMM("gold"));
+            var noteE = new Audio("mp3/music-box-e.mp3");
+            noteE.volume = (messageData.data[2] * (1 / 128) * pad);
+            noteE.play();
 
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 53) {
-    World.add(engine.world, addMM("green"));
-    var noteF = new Audio("mp3/music-box-f.mp3");
-    noteF.volume = (messageData.data[2] * (1/128) * pad);
-    noteF.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 53) {
+            World.add(engine.world, addMM("green"));
+            var noteF = new Audio("mp3/music-box-f.mp3");
+            noteF.volume = (messageData.data[2] * (1 / 128) * pad);
+            noteF.play();
 
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 55) {
-    World.add(engine.world, addMM("blue"));
-    var noteG = new Audio("mp3/music-box-g.mp3");
-    noteG.volume = (messageData.data[2] * (1/128) * pad);
-    noteG.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 55) {
+            World.add(engine.world, addMM("blue"));
+            var noteG = new Audio("mp3/music-box-g.mp3");
+            noteG.volume = (messageData.data[2] * (1 / 128) * pad);
+            noteG.play();
 
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 57) {
-    World.add(engine.world, addMM("brown"));
-    var noteA = new Audio("mp3/music-box-a.mp3");
-    noteA.volume = (messageData.data[2] * (1/128) * pad);
-    noteA.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 57) {
+            World.add(engine.world, addMM("brown"));
+            var noteA = new Audio("mp3/music-box-a.mp3");
+            noteA.volume = (messageData.data[2] * (1 / 128) * pad);
+            noteA.play();
 
-}
+        }
 
-// chromatic notes
+        // chromatic notes
 
-else if (messageData.data[0] === 144 && messageData.data[1] === 49) {
-    World.add(engine.world, addMM("yin-yang"));
-    var snare = new Audio("mp3/music-box-snare.wav");
-    snare.volume = (messageData.data[2] * (1/128) * pad);
-    snare.play();
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 51) {
-    World.add(engine.world, addMM("doggo"));
-    var bamboo = new Audio("mp3/music-box-bamboo.wav");
-    bamboo.volume = (messageData.data[2] * (1/128) * pad);
-    bamboo.play();
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 54) {
-    World.add(engine.world, addMM("secretary"));
-    var hat = new Audio("mp3/music-box-hat.wav");
-    hat.volume = (messageData.data[2] * (1/128) * pad);
-    hat.play();
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 56) {
-    World.add(engine.world, addMM("fig"));
-    var kick = new Audio("mp3/music-box-kick.wav");
-    kick.volume = (messageData.data[2] * (1/128) * pad);
-    kick.play();
-}
-else if (messageData.data[0] === 144 && messageData.data[1] === 58) {
-    World.add(engine.world, addMM("marlow"));
-    var crash = new Audio("mp3/music-box-crash.mp3");
-    crash.volume = (messageData.data[2] * (1/128) * pad);
-    crash.play();
-}
+        else if (messageData.data[0] === 144 && messageData.data[1] === 49) {
+            World.add(engine.world, addMM("yin-yang"));
+            var snare = new Audio("mp3/music-box-snare.wav");
+            snare.volume = (messageData.data[2] * (1 / 128) * pad);
+            snare.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 51) {
+            World.add(engine.world, addMM("doggo"));
+            var bamboo = new Audio("mp3/music-box-bamboo.wav");
+            bamboo.volume = (messageData.data[2] * (1 / 128) * pad);
+            bamboo.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 54) {
+            World.add(engine.world, addMM("secretary"));
+            var hat = new Audio("mp3/music-box-hat.wav");
+            hat.volume = (messageData.data[2] * (1 / 128) * pad);
+            hat.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 56) {
+            World.add(engine.world, addMM("fig"));
+            var kick = new Audio("mp3/music-box-kick.wav");
+            kick.volume = (messageData.data[2] * (1 / 128) * pad);
+            kick.play();
+        }
+        else if (messageData.data[0] === 144 && messageData.data[1] === 58) {
+            World.add(engine.world, addMM("marlow"));
+            var crash = new Audio("mp3/music-box-crash.mp3");
+            crash.volume = (messageData.data[2] * (1 / 128) * pad);
+            crash.play();
+        }
 
-}
+    }
 
-// on failure
-function onMIDIFailure() {
-  console.warn("Not recognising MIDI controller")
-}
+    // on failure
+    function onMIDIFailure() {
+        console.warn("Not recognising MIDI controller")
+    }
 
-// end midi stuff
+    // end midi stuff
 
-// start physics stuff
+    // start physics stuff
 
 
 
@@ -371,16 +372,28 @@ function onMIDIFailure() {
         }
         // Composites.add(stack);
         World.add(engine.world, addMM(randomColor));
-
+        // console.log(addMM(randomColor))
     })
 
-    document.getElementById("btn-clear-mm").addEventListener("click", e => {
-        Matter.Composite.allBodies(engine.world).forEach(obj => {
-            if (obj.label === "Circle Body") {
-                World.remove(engine.world, obj);
-            }
-        });
-    })
+
+
+        document.getElementById("btn-clear-mm").addEventListener("click", e => {
+            let colorDropdown = document.getElementById("select-color").value
+            let spriteURL = `./img/mms/${colorDropdown}.png`
+            Matter.Composite.allBodies(engine.world).forEach(obj => {
+                if (colorDropdown === "all") {
+                    if (obj.label === "Circle Body") {
+                        World.remove(engine.world, obj);
+                        console.log(obj)
+                    }
+                }
+                else {
+                    if (obj.label === "Circle Body" && obj.render.sprite.texture === spriteURL ) {
+                        World.remove(engine.world, obj);
+                    }
+                }
+            });
+        })
 
 
     // keep the mouse in sync with rendering
